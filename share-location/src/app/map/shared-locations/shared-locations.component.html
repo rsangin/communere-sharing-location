@@ -1,0 +1,18 @@
+<div #container class="container">
+  <app-editable-shared-location
+    *ngIf="createNew || editableLocation"
+    [position]="newSharedLocationPosition ?? { lat: 0, lon: 0 }"
+    [sharedLocation]="editableLocation"
+    (submitted)="sharedLocationEdited()"
+  ></app-editable-shared-location>
+
+  <ng-container *ngFor="let sharedLocation of sharedLocations">
+    <app-shared-location
+      *ngIf="sharedLocation !== editableLocation"
+      [sharedLocation]="sharedLocation"
+      (show)="showLocation.emit($event)"
+      (delete)="delete($event)"
+      (edit)="edit($event); container.scrollTo({ top: 0 })"
+    ></app-shared-location>
+  </ng-container>
+</div>

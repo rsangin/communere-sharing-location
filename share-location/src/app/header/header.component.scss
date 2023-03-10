@@ -1,0 +1,31 @@
+@import "../../css-variables.scss";
+
+ul {
+  display: flex;
+  justify-content: space-between;
+  padding: $padding;
+  background: #055f6f;
+  margin: 0;
+  height: $menuHeight;
+  line-height: $menuHeight;
+  color: white;
+
+  img {
+    height: $menuHeight;
+    aspect-ratio: 1 / 1;
+  }
+
+  li {
+    list-style: none;
+
+    &.logo {
+      display: flex;
+      gap: $padding;
+    }
+  }
+
+  .show-shared-locations {
+    cursor: pointer;
+    border-radius: 50%;
+  }
+}

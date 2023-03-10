@@ -1,0 +1,61 @@
+<form
+  [formGroup]="formGroup"
+  class="shared-location"
+  [style.background]="formGroup.value.color"
+>
+  <div class="image-uploader" (click)="fileInput.click()">
+    <img
+      [src]="
+        formGroup.value.logo
+          ? formGroup.value.logo
+          : '/assets/images/default-location-logo.png'
+      "
+    />
+
+    <img class="hover-image" src="/assets/images/change-image.svg" />
+
+    <input
+      #fileInput
+      type="file"
+      [hidden]="true"
+      (change)="fileChanged($event)"
+    />
+  </div>
+
+  <div class="form-field">
+    <label> name </label>
+    <input type="text" name="name" formControlName="name" />
+  </div>
+
+  <div class="form-field">
+    <label> type </label>
+    <select formControlName="type">
+      <option value="Personal">Personal</option>
+      <option value="Work">Work</option>
+      <option value="Business">Business</option>
+    </select>
+  </div>
+
+  <div class="form-field">
+    <label> color </label>
+    <div class="color-selector">
+      <span
+        *ngFor="let color of colors"
+        [style.background]="color"
+        class="hoverable"
+        (click)="changeColor(color)"
+      >
+        <img
+          *ngIf="formGroup.value.color === color"
+          src="/assets/images/tick.webp"
+        />
+      </span>
+    </div>
+  </div>
+
+  <div class="form-field buttons-container">
+    <button [disabled]="formGroup.invalid" class="hoverable" (click)="submit()">
+      Save
+    </button>
+  </div>
+</form>

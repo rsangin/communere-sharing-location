@@ -1,0 +1,47 @@
+@import "../../css-variables.scss";
+
+:host {
+  position: relative;
+}
+
+#map-container {
+  width: 100vw;
+  height: calc(100vh - #{$menuHeight + 2 * $padding});
+}
+
+.buttons-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  padding: $padding;
+  flex-direction: column;
+  gap: $padding;
+}
+
+.round-button {
+  border-radius: 50%;
+  background: transparent;
+  transition: all 0.5s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: white;
+  }
+
+  img {
+    width: 3rem;
+  }
+}
+
+aside {
+  position: absolute;
+  right: -400px;
+  z-index: 10;
+  transition: all 0.5s ease;
+
+  &.show-shared-locations {
+    right: 0;
+  }
+}

@@ -1,0 +1,11 @@
+@import "../../../css-variables.scss";
+
+.container {
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  padding: $padding;
+  gap: $padding;
+  height: calc(100vh - #{$menuHeight + 4 * $padding});
+  overflow: auto;
+}

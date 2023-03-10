@@ -1,0 +1,39 @@
+<div class="shared-location" [style.background]="sharedLocation.color">
+  <img
+    [src]="
+      sharedLocation.logo
+        ? sharedLocation.logo
+        : '/assets/images/default-location-logo.png'
+    "
+  />
+
+  <div class="form-field">
+    <label> name </label>
+    <span> {{ sharedLocation.name }} </span>
+  </div>
+
+  <div class="form-field">
+    <label> position </label>
+    <span>
+      {{ sharedLocation.position.lon | number }},
+      {{ sharedLocation.position.lat | number }}
+    </span>
+  </div>
+
+  <div class="form-field">
+    <label> type </label>
+    <span> {{ sharedLocation.type }} </span>
+  </div>
+
+  <div class="form-field buttons-container">
+    <button (click)="show.emit(sharedLocation)" class="hoverable">
+      show on map
+    </button>
+    <button (click)="edit.emit(sharedLocation)" class="hoverable">
+      edit
+    </button>
+    <button (click)="delete.emit(sharedLocation)" class="hoverable">
+      delete
+    </button>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+<div id="map-container">
+  <aside [class.show-shared-locations]="service.showSharedLocations | async">
+    <app-shared-locations
+      [createNew]="createNewSharedLocation"
+      [newSharedLocationPosition]="newSharedLocationPosition"
+      (showLocation)="showLocation($event.position)"
+      (submitted)="clearNewSharedLocation()"
+    ></app-shared-locations>
+  </aside>
+
+  <div class="buttons-container">
+    <button
+      class="round-button hoverable"
+      title="Show Current Location"
+      (click)="flyToCurrentLocation()"
+    >
+      <img src="/assets/images/current-location.svg" />
+    </button>
+
+    <button
+      class="round-button hoverable"
+      title="Share Current Location"
+      (click)="shareCurrentLocation()"
+    >
+      <img src="/assets/images/share-location.svg" />
+    </button>
+  </div>
+</div>
