@@ -25,6 +25,7 @@ export class MapComponent implements AfterViewInit {
   private currentLocationMarker?: mapboxgl.Marker;
 
   private map!: mapboxgl.Map;
+  private shareLocationMarkers: mapboxgl.Marker[] = [];
 
   public constructor(public service: ShareLocationService) {}
 
@@ -55,10 +56,14 @@ export class MapComponent implements AfterViewInit {
     this.loadSharedLocations();
   }
 
-  private loadSharedLocations(): void {
+  public loadSharedLocations(): void {
+    for (const shareLocationMarker of this.shareLocationMarkers)
+      shareLocationMarker.remove();
+
+    this.shareLocationMarkers = [];
     const locations = this.service.loadLocations();
     for (const location of locations) {
-      this.addMarker(location.position, 'blue');
+      this.shareLocationMarkers.push(this.addMarker(location.position, 'blue'));
     }
   }
 

@@ -24,6 +24,9 @@ export class SharedLocationsComponent implements OnInit {
   @Output()
   public submitted = new EventEmitter<void>();
 
+  @Output()
+  public reload = new EventEmitter<void>();
+
   public sharedLocations: SharedLocation[] = [];
 
   public constructor(private service: ShareLocationService) {}
@@ -39,6 +42,7 @@ export class SharedLocationsComponent implements OnInit {
   public delete(location: SharedLocation): void {
     this.service.delete(location.id);
     this.loadSharedLocations();
+    this.reload.emit();
   }
 
   public edit(location: SharedLocation): void {
@@ -53,5 +57,6 @@ export class SharedLocationsComponent implements OnInit {
 
     this.loadSharedLocations();
     this.submitted.emit();
+    this.reload.emit();
   }
 }
